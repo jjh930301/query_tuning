@@ -1,0 +1,35 @@
+springdoc:
+  swagger-ui:
+    path: /custom-swagger-ui
+spring:
+  hikari:
+      data-source-properties.useUnicode: true
+      data-source-properties.characterEncoding: UTF-8
+  config:
+    use-legacy-processing: true
+  profiles:
+    active: development
+  main:
+    allow-circular-references: true
+  jpa:
+    properties:
+      hibernate:  
+        type: trace
+    show-sql: true
+    hibernate: 
+      ddl-auto: update
+      use-new-id-generator-mappings: false
+    generate-ddl: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      additional-paths: .
+      trigger-file: reload.txt
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

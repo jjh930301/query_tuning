@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"
+>
+<mapper namespace="com.query.example.mapper.InfoMapper">
+  <select
+    id="findByInfoidTuningFirst"
+    parameterType="int"
+    resultType="com.query.example.vo.FirstVO"
+  >
+    select 
+    i.id as id
+    , i.serviceId
+    , i.address
+    , i.addressA
+    , i.addressN
+    , i.createdAt
+    , d.title
+    from (
+      select 
+      i.id as id
+      , i.service_id as serviceId
+      , i.address as address
+      , i.address_a as addressA
+      , i.address_n as addressN
+      , i.created_at as createdAt
+      from info i 
+      where i.id = #{infoId}
+      order by i.created_at
+    ) i
+    left outer join config c on c.info_id = i.serviceId
+    left outer join delivery d on d.id = c.delivery_id
+  </select>
+</mapper>
