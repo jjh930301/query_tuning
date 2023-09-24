@@ -1,6 +1,6 @@
 * 쿼리 튜닝한 기록을 querydsl , mybatis로 기록할 프로젝트입니다.
 
-- touch .env
+- touch .env <br>
 DB_URI=mysql <br>
 DB_NAME=example <br>
 DB_USER=root <br>
