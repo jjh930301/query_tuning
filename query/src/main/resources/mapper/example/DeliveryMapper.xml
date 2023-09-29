@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"
+>
+<mapper namespace="com.query.example.mapper.DeliveryMapper">
+  <insert
+    id="insertByTitle"
+    parameterType="com.query.example.dto.DeliveryDTO"
+    useGeneratedKeys="true" 
+    keyColumn="id" 
+    keyProperty="id"
+  >
+    insert into `delivery` (
+      title
+      , config_id
+    ) select
+      #{title}
+      , #{configId}
+      from dual
+      where not exists (
+        select
+          title
+          from `delivery`
+          where title = #{title}
+          limit 1
+      )
+  </insert>
+</mapper>

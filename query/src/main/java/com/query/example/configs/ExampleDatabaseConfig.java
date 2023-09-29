@@ -24,12 +24,11 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 @Configuration
 @EnableJpaAuditing
-@EnableJpaRepositories
-// (
-//   basePackages = "com.query.example.repository",
-//   entityManagerFactoryRef = "exampleEntityManagerFactory", 
-//   transactionManagerRef = "exampleTransactionManager"
-// )
+@EnableJpaRepositories(
+  basePackages = "com.query.example.repository",
+  entityManagerFactoryRef = "exampleEntityManagerFactory", 
+  transactionManagerRef = "exampleTransactionManager"
+)
 public class ExampleDatabaseConfig {
 
   @Primary

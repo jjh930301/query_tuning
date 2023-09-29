@@ -24,6 +24,12 @@ public class ConfigEntity {
   private Long id;
 
   @Column(
+    name = "idx",
+    columnDefinition = "bigint not null"
+  )
+  private Long idx;
+
+  @Column(
     name = "info_id",
     columnDefinition = "int not null"
   )

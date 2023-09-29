@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"
+>
+<mapper namespace="com.query.example.mapper.ConfigMapper">
+  <select
+    id="findByIdBeforeSecond"
+    parameterType="long"
+    resultType="com.query.example.vo.SecondVO"
+  >
+    select 
+    i.idx as idx
+    , i.address as address
+    , i.address_a as addressA
+    , i.address_n as addressN
+    , i.created_at as createdAt
+    , di.title
+    from (
+      select 
+      idx as idx
+      , id
+      from config c
+      where c.id = #{configId}
+    ) c
+    left outer join delivery di on di.config_id = c.id
+    left outer join info i on c.idx = i.id
+    order by i.created_at desc
+    limit 10;
+  </select>
+</mapper>
